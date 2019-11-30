@@ -1,23 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import * as actions from "./redux/actions";
+
+import routes from "./routes";
+import { Switch, Redirect, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+      {
+        routes.map((prop, key) => {
+          if (prop.redirect)
+            return <Redirect from={prop.path} to={prop.to} key={key} />;
+          return (
+            <Route
+              path={prop.path}
+              key={key}
+              render={props => <prop.component {...props} />}
+            />
+          );
+        })
+      }
+      </Switch>
     </div>
   );
 }
