@@ -2,6 +2,15 @@
 
 @import './App';
 
+/* #### views #### */
+@import './views/Home/Home';
+@import './views/About/About';
+
+/* #### containers #### */
+@import './containers/Header/Header';
+@import './containers/Footer/Footer';
+
+/* #### components #### */
 @import './components/Loading/Loading';
 
 * {
